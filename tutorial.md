@@ -10,7 +10,7 @@ date_published: 2019-04-
 
 The [Google Cloud Run Beta](https://cloud.google.com/run/)
 is an easy way to deploy your apps to the same infrastructure that powers
-Google's products. With Cloud Build, Cloud Run, and Github you can create a full CI/CD pipeline for your
+Google's products. Using Cloud Build, Cloud Run, and Github you can create a full CI/CD pipeline for your
 app written in [Elixir](http://elixir-lang.org/) with the
 [Phoenix](http://phoenixframework.org/) Framework and have it up and running in minutes.
 
