@@ -6,7 +6,7 @@ tags: Cloud Run, Cloud Build, Elixir, Phoenix
 date_published: 2019-04-
 ---
 
-**Note:** [Google Cloud Run Beta](https://cloud.google.com/run/) is in beta. Google Cloud Platform products in beta are not covered under any SLA’s.
+**Note:** [Google Cloud Run](https://cloud.google.com/run/) is in beta. Google Cloud Platform products in beta are not covered under any SLA’s.
 
 The [Google Cloud Run Beta](https://cloud.google.com/run/)
 is an easy way to deploy your apps to the same infrastructure that powers
