@@ -3,16 +3,16 @@ title: Run an Elixir Phoenix App with Google Cloud Run
 description: Learn how to create a CI/CD pipeline for an Elixir Phoenix app with Google Cloud Run and Google Cloud Build
 author: arciola
 tags: Cloud Run, Cloud Build, Elixir, Phoenix
-date_published: 2019-04-
+date_published: 2019-06-3
 ---
-
 **Note:** [Google Cloud Run](https://cloud.google.com/run/) is in beta. Google Cloud Platform products in beta are not covered under any SLA’s.
 
-The [Google Cloud Run Beta](https://cloud.google.com/run/)
+[Google Cloud Run](https://cloud.google.com/run/)
 is an easy way to deploy your apps to the same infrastructure that powers
-Google's products. Using Cloud Build, Cloud Run, and Github you can create a full CI/CD pipeline for your
+Google's products. Using Cloud Build, Cloud Run, and Github you can create a CI/CD pipeline for your
 app written in [Elixir](http://elixir-lang.org/) with the
-[Phoenix](http://phoenixframework.org/) Framework and have it up and running in minutes.
+[Phoenix](http://phoenixframework.org/) Framework and have it up and running in minutes. 
+**Note:** Due to processes being managed and throttled by Cloud Run some features may not work (websockets, presence, pubsub).
 
 This tutorial will help you get started deploying a Phoenix app (without ecto) to Google Cloud Run using Google Cloud Build. You will create a new Phoenix application, and learn how to configure, build, deploy, and update it. 
 
@@ -32,7 +32,7 @@ Before running this tutorial, take the following steps:
     you [initialize](https://cloud.google.com/sdk/docs/initializing) the SDK
     and set the default project to the new project you created.
 
-    Version 227.0.0 or later of the SDK is required. If you have an earlier
+    Version 248.0.0 or later of the SDK is required. If you have an earlier
     version installed, you may upgrade it by running:
 
         gcloud components update
@@ -53,7 +53,7 @@ If you have not yet installed Elixir and Phoenix, do so.
 
         mix local.hex
         mix local.rebar
-        mix archive.install hex phx_new 1.4.0
+        mix archive.install hex phx_new 1.4.5
 
 ## Create a new app and run it locally
 
@@ -96,7 +96,7 @@ may use it instead.
         git init
         git add .
         git commit -m "first commit"
-        git remote add origin https://github.com/{$USERNAME}/{REPO_NAME}.git
+        git remote add origin https://github.com/{USERNAME}/{REPO_NAME}.git
         git push -u origin master
 
 4. You should now see your code in the Github repository.
@@ -117,9 +117,9 @@ You will now configure the build files for Cloud Build and Cloud Run.
 
 2.  Next you will need to create the Cloud Build configuration file, which we said we would use in the Cloud Build Trigger. You can [create your own build configuration file](https://cloud.google.com/cloud-build/docs/build-config), or use [this template for Phoenix](https://github.com/Marciola/elixir-phoenix-cloud-build-cloud-run/blob/master/cloudbuild.yaml).
 
-**Note:** If you use the template you will need to replace {$GITHUB_USERNAME} and {$REPO_NAME} on 4 different lines. 
+**Note:** If you use the template you will need to replace {GITHUB_USERNAME} and {REPO_NAME} on 4 different lines. 
 
-3. Lastly, you will need to edit your .gitginore file to allow prod.secrets.exs to be included in the repo (which should be set to private). Open .gitignore in the root folder and comment out the “/config/*.secret.exs” in the last line. 
+3. Lastly, you will need to edit your .gitginore file to allow prod.secrets.exs to be included in the repo (**Note:** this step is only included to get your demo up and running. Do not use in production). Open .gitignore in the root folder and comment out the “/config/*.secret.exs” in the last line. For production ready secrets management take a look at Cloud Key Management Service.
 
 4. Now you will push the code changes to Github.
 
@@ -135,7 +135,7 @@ Your Phoenix application should now be live.
 
 2. If if has successfully built, you can check the [Cloud Run Services page](console.cloud.google.com/run) to see if your service has successfully launched. Assuming it has, you can click the service, and then follow the URL on the page to view your Phoenix app.
 
-**Note:** if you encountered an error on either step, view the logs to further debug the issue. Issues generally arise from misspelling.
+**Note:** if you encountered an error on either step, [view the logs](https://cloud.google.com/run/docs/logging) to further debug the issue. Issues generally arise from misspelling.
 
 ## Update your application
 
@@ -148,12 +148,12 @@ Let's make a simple change and redeploy.
 2.  Push the changes to Github:
 
         git add .
-        git commit -m "Configuration for Cloud Build and Cloud Run"
+        git commit -m "Homepage updates"
         git push -u origin master
 
 Cloud Build will take care of rebuilding your app and trigger a deployment of the updated    version on successful complication. Then Cloud Run will migrating traffic to the newly deployed version.
 
-3.  View your changes live by visiting the URL link on the Cloud Run service spage:
+3.  View your changes live by visiting the URL link on the Cloud Run services page.
 
 ## Cleaning up
 
