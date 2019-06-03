@@ -5,6 +5,7 @@ author: arciola
 tags: Cloud Run, Cloud Build, Elixir, Phoenix
 date_published: 2019-06-3
 ---
+
 **Note:** [Google Cloud Run](https://cloud.google.com/run/) is in beta. Google Cloud Platform products in beta are not covered under any SLA’s.
 
 [Google Cloud Run](https://cloud.google.com/run/)
@@ -113,9 +114,9 @@ Now you setup Cloud Build to build on every code change in your Github repo.
 
 You will now configure the build files for Cloud Build and Cloud Run.
 
-1.  [Create your own dockerfile](https://cloud.google.com/cloud-build/docs/quickstart-docker) or use [this template for Phoenix](https://github.com/Marciola/elixir-phoenix-cloud-build-cloud-run/blob/master/Dockerfile). This will be used by Cloud Build to build your container.
+1.  [Create your own dockerfile](https://cloud.google.com/cloud-build/docs/quickstart-docker) or use [this template for Phoenix](./elixir-phoenix-on-cloud-build-cloud-run/Dockerfile). This will be used by Cloud Build to build your container.
 
-2.  Next you will need to create the Cloud Build configuration file, which we said we would use in the Cloud Build Trigger. You can [create your own build configuration file](https://cloud.google.com/cloud-build/docs/build-config), or use [this template for Phoenix](https://github.com/Marciola/elixir-phoenix-cloud-build-cloud-run/blob/master/cloudbuild.yaml).
+2.  Next you will need to create the Cloud Build configuration file, which we said we would use in the Cloud Build Trigger. You can [create your own build configuration file](https://cloud.google.com/cloud-build/docs/build-config), or use [this template for Phoenix](./elixir-phoenix-on-cloud-build-cloud-run/cloudbuild.yaml).
 
 **Note:** If you use the template you will need to replace {GITHUB_USERNAME} and {REPO_NAME} on 4 different lines. 
 
@@ -202,3 +203,4 @@ and traffic migration.
 
 You can also try the tutorials on deploying Phoenix applications
 [to Kubernetes Engine](https://cloud.google.com/community/tutorials/elixir-phoenix-on-kubernetes-google-container-engine), [to Compute Engine](https://cloud.google.com/community/tutorials/elixir-phoenix-on-google-compute-engine), and [to App Engine Flex](https://cloud.google.com/community/tutorials/elixir-phoenix-on-google-app-engine).
+
